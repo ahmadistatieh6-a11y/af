@@ -1,0 +1,2313 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width,
+               initial-scale=1.0,
+               maximum-scale=1.0,
+               user-scalable=no">
+
+<title>إلك ❤️</title>
+
+<style>
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    background: #000;
+    color: white;
+    font-family:
+        "Segoe UI",
+        Tahoma,
+        Arial,
+        sans-serif;
+
+    touch-action: manipulation;
+}
+
+
+/* =========================================================
+   APP
+========================================================= */
+
+#app {
+    position: relative;
+    width: 100%;
+    height: 100dvh;
+    overflow: hidden;
+    background: #000;
+}
+
+
+/* =========================================================
+   GLOBAL STARS
+   النجوم الآن ثابتة فوق كل الشاشات
+========================================================= */
+
+#globalStars {
+    position: fixed;
+    inset: 0;
+
+    z-index: 900;
+
+    pointer-events: none;
+
+    overflow: hidden;
+}
+
+.star {
+    position: absolute;
+
+    border-radius: 50%;
+
+    background: white;
+
+    opacity: 0.4;
+
+    animation:
+        twinkle
+        var(--duration)
+        ease-in-out
+        infinite alternate;
+}
+
+@keyframes twinkle {
+
+    0% {
+        opacity: 0.15;
+        transform: scale(0.7);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1.5);
+    }
+}
+
+
+/* =========================================================
+   SCREENS
+========================================================= */
+
+.screen {
+    position: absolute;
+
+    inset: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transform: scale(1.04);
+
+    transition:
+        opacity 0.42s ease,
+        transform 0.42s cubic-bezier(.22,.61,.36,1),
+        visibility 0.42s;
+
+    overflow: hidden;
+}
+
+.screen.active {
+
+    opacity: 1;
+
+    visibility: visible;
+
+    transform: scale(1);
+}
+
+
+/* =========================================================
+   INTRO
+========================================================= */
+
+#intro {
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(35, 13, 53, 0.35),
+            rgba(0,0,0,0.95) 70%
+        ),
+        #000;
+}
+
+
+/* =========================================================
+   BUTTON GENERAL
+========================================================= */
+
+.click-button {
+
+    position: absolute;
+
+    border: 1px solid rgba(255,255,255,0.32);
+
+    color: white;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,0.13),
+            rgba(255,255,255,0.035)
+        );
+
+    padding: 14px 26px;
+
+    border-radius: 999px;
+
+    font-size: 17px;
+
+    font-weight: 600;
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    box-shadow:
+        0 0 20px rgba(255,255,255,0.04);
+
+    cursor: pointer;
+
+    transition:
+        transform 0.18s ease,
+        background 0.18s ease,
+        color 0.18s ease,
+        box-shadow 0.18s ease,
+        opacity 0.25s ease;
+
+    z-index: 20;
+}
+
+
+/*
+   لما الإصبع/المؤشر يقرب
+*/
+
+.click-button:hover,
+.click-button:focus-visible {
+
+    color: #fff;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff4f9a,
+            #b52cff
+        );
+
+    border-color:
+        rgba(255,255,255,0.8);
+
+    box-shadow:
+        0 0 15px #ff4f9a,
+        0 0 35px rgba(255,55,150,0.6);
+
+    transform:
+        scale(1.08);
+}
+
+.click-button:active {
+
+    transform:
+        scale(0.92);
+}
+
+
+/* =========================================================
+   CENTER
+========================================================= */
+
+.center-button {
+
+    top: 50%;
+    left: 50%;
+
+    transform:
+        translate(-50%, -50%);
+}
+
+
+/* =========================================================
+   CORNERS
+========================================================= */
+
+.top-right {
+
+    top: 25px;
+    right: 20px;
+
+    left: auto;
+    bottom: auto;
+
+    transform: none;
+}
+
+.top-left {
+
+    top: 25px;
+    left: 20px;
+
+    right: auto;
+    bottom: auto;
+
+    transform: none;
+}
+
+.bottom-left {
+
+    bottom: 30px;
+    left: 20px;
+
+    top: auto;
+    right: auto;
+
+    transform: none;
+}
+
+.bottom-right {
+
+    bottom: 30px;
+    right: 20px;
+
+    top: auto;
+    left: auto;
+
+    transform: none;
+}
+
+
+/* =========================================================
+   CHAOS
+========================================================= */
+
+#chaos {
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(43,13,38,0.72),
+            rgba(3,3,7,0.98) 75%
+        );
+}
+
+
+/*
+   طبقة الأزرار
+*/
+
+#chaosButtons {
+
+    position: absolute;
+
+    inset: 0;
+
+    overflow: hidden;
+
+    z-index: 2;
+}
+
+
+/* =========================================================
+   CHAOS BUTTONS
+========================================================= */
+
+.chaos-button {
+
+    position: absolute;
+
+    white-space: nowrap;
+
+    border:
+        1px solid
+        rgba(255,255,255,0.18);
+
+    background:
+        rgba(255,255,255,0.065);
+
+    color:
+        rgba(255,255,255,0.72);
+
+    padding:
+        7px 13px;
+
+    border-radius:
+        999px;
+
+    font-size:
+        12px;
+
+    pointer-events:
+        none;
+
+    opacity: 0;
+
+    box-shadow:
+        0 0 12px rgba(255,70,160,0.04);
+
+    animation:
+        chaosAppear
+        0.22s
+        ease
+        forwards,
+        chaosMove
+        var(--moveSpeed)
+        ease-in-out
+        infinite
+        alternate;
+
+    z-index: 2;
+}
+
+
+/* ظهور سريع جدًا */
+
+@keyframes chaosAppear {
+
+    0% {
+
+        opacity: 0;
+
+        transform:
+            scale(0.1)
+            rotate(-20deg);
+    }
+
+    70% {
+
+        opacity: 0.85;
+
+        transform:
+            scale(1.15)
+            rotate(5deg);
+    }
+
+    100% {
+
+        opacity: 0.72;
+
+        transform:
+            scale(1)
+            rotate(0deg);
+    }
+}
+
+
+/* حركة عشوائية */
+
+@keyframes chaosMove {
+
+    from {
+
+        margin-left:
+            var(--moveX1);
+
+        margin-top:
+            var(--moveY1);
+
+        transform:
+            rotate(var(--rotate1));
+    }
+
+    to {
+
+        margin-left:
+            var(--moveX2);
+
+        margin-top:
+            var(--moveY2);
+
+        transform:
+            rotate(var(--rotate2));
+    }
+}
+
+
+/* =========================================================
+   RAINING BUTTONS
+========================================================= */
+
+.rain-button {
+
+    position: absolute;
+
+    top: -60px;
+
+    color:
+        rgba(255,255,255,0.65);
+
+    background:
+        rgba(255,255,255,0.055);
+
+    border:
+        1px solid
+        rgba(255,255,255,0.13);
+
+    padding:
+        7px 13px;
+
+    border-radius:
+        999px;
+
+    font-size:
+        12px;
+
+    pointer-events:
+        none;
+
+    animation:
+        buttonRain
+        var(--rainDuration)
+        linear
+        forwards;
+}
+
+@keyframes buttonRain {
+
+    0% {
+
+        transform:
+            translateY(-80px)
+            translateX(0)
+            rotate(0deg);
+
+        opacity: 0;
+    }
+
+    8% {
+
+        opacity: 0.75;
+    }
+
+    100% {
+
+        transform:
+            translateY(115vh)
+            translateX(var(--rainDrift))
+            rotate(var(--rainRotate));
+
+        opacity: 0;
+    }
+}
+
+
+/* =========================================================
+   REAL BUTTON AREA
+========================================================= */
+
+.chaos-message {
+
+    position: relative;
+
+    z-index: 100;
+
+    width: 90%;
+
+    max-width: 430px;
+
+    text-align: center;
+
+    padding: 25px;
+
+    animation:
+        mainMessageAppear
+        0.7s
+        cubic-bezier(.17,.67,.3,1.3);
+}
+
+@keyframes mainMessageAppear {
+
+    0% {
+
+        opacity: 0;
+
+        transform:
+            scale(0.5);
+    }
+
+    100% {
+
+        opacity: 1;
+
+        transform:
+            scale(1);
+    }
+}
+
+.chaos-message h1 {
+
+    font-size:
+        clamp(32px, 9vw, 52px);
+
+    line-height:
+        1.2;
+
+    margin-bottom:
+        15px;
+
+    text-shadow:
+        0 0 30px
+        rgba(255,255,255,0.22);
+}
+
+.chaos-message p {
+
+    color:
+        #ff9dcc;
+
+    font-size:
+        18px;
+
+    margin-bottom:
+        30px;
+}
+
+
+/* =========================================================
+   REAL BUTTON
+   أوضح من كل الخلفية
+========================================================= */
+
+#realButton {
+
+    position: relative;
+
+    display: inline-block;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff3f91,
+            #b52cff
+        );
+
+    border:
+        2px solid
+        rgba(255,255,255,0.8);
+
+    color: white;
+
+    padding:
+        16px 34px;
+
+    font-size:
+        18px;
+
+    font-weight:
+        700;
+
+    box-shadow:
+        0 0 15px
+            rgba(255,55,150,0.8),
+        0 0 45px
+            rgba(255,55,150,0.45),
+        0 10px 35px
+            rgba(0,0,0,0.4);
+
+    transition:
+        left 0.2s ease,
+        top 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+/* =========================================================
+   ANGRY
+========================================================= */
+
+#angry {
+
+    background:
+        radial-gradient(
+            circle,
+            #351323,
+            #080609 70%
+        );
+}
+
+.angry-content {
+
+    position: relative;
+
+    z-index: 20;
+
+    width: 90%;
+
+    max-width: 430px;
+
+    text-align: center;
+
+    animation:
+        mainMessageAppear
+        0.6s ease;
+}
+
+.angry-content h1 {
+
+    font-size:
+        clamp(29px, 8vw, 48px);
+
+    line-height:
+        1.45;
+
+    margin-bottom:
+        35px;
+}
+
+
+/* =========================================================
+   NEXT BUTTON
+========================================================= */
+
+.next-button {
+
+    border: none;
+
+    padding:
+        15px 35px;
+
+    border-radius:
+        999px;
+
+    color: white;
+
+    font-size:
+        17px;
+
+    font-weight:
+        600;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff4c91,
+            #9d35ff
+        );
+
+    box-shadow:
+        0 10px 35px
+        rgba(255,50,150,0.3);
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.next-button:hover {
+
+    transform:
+        scale(1.06);
+
+    box-shadow:
+        0 0 35px
+        rgba(255,50,150,0.55);
+}
+
+.next-button:active {
+
+    transform:
+        scale(0.92);
+}
+
+
+/* =========================================================
+   LOVE
+========================================================= */
+
+#love {
+
+    background:
+        radial-gradient(
+            circle at 50% 30%,
+            #711e50,
+            #260d2b 40%,
+            #08070d 85%
+        );
+}
+
+
+/* =========================================================
+   HEART RAIN
+========================================================= */
+
+#heartRain {
+
+    position: absolute;
+
+    inset: 0;
+
+    overflow: hidden;
+
+    pointer-events: none;
+
+    z-index: 1;
+}
+
+.heart {
+
+    position: absolute;
+
+    top: -60px;
+
+    font-size:
+        var(--size);
+
+    color:
+        var(--color);
+
+    opacity:
+        var(--opacity);
+
+    filter:
+        drop-shadow(
+            0 0 8px
+            currentColor
+        );
+
+    animation:
+        heartFall
+        var(--duration)
+        linear
+        forwards;
+}
+
+@keyframes heartFall {
+
+    0% {
+
+        transform:
+            translateY(-60px)
+            translateX(0)
+            rotate(0deg);
+
+        opacity: 0;
+    }
+
+    10% {
+
+        opacity:
+            var(--opacity);
+    }
+
+    100% {
+
+        transform:
+            translateY(110vh)
+            translateX(var(--drift))
+            rotate(360deg);
+
+        opacity: 0;
+    }
+}
+
+
+/* =========================================================
+   LOVE CARD
+========================================================= */
+
+.love-card {
+
+    position: relative;
+
+    z-index: 10;
+
+    width:
+        calc(100% - 25px);
+
+    max-width:
+        550px;
+
+    max-height:
+        82dvh;
+
+    overflow-y:
+        auto;
+
+    padding:
+        32px 22px;
+
+    text-align:
+        center;
+
+    border-radius:
+        30px;
+
+    background:
+        rgba(255,255,255,0.08);
+
+    border:
+        1px solid
+        rgba(255,255,255,0.16);
+
+    backdrop-filter:
+        blur(18px);
+
+    -webkit-backdrop-filter:
+        blur(18px);
+
+    box-shadow:
+        0 25px 80px
+        rgba(0,0,0,0.4);
+
+    animation:
+        cardAppear
+        0.75s
+        cubic-bezier(.17,.67,.3,1.2);
+}
+
+@keyframes cardAppear {
+
+    0% {
+
+        opacity: 0;
+
+        transform:
+            translateY(40px)
+            scale(0.92);
+    }
+
+    100% {
+
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+.love-card h1 {
+
+    font-size:
+        32px;
+
+    color:
+        #ff9ccc;
+
+    margin-bottom:
+        25px;
+
+    text-shadow:
+        0 0 25px
+        rgba(255,100,180,0.35);
+}
+
+.love-text {
+
+    color:
+        #f6f1f5;
+
+    font-size:
+        16px;
+
+    line-height:
+        2.05;
+
+    text-align:
+        right;
+
+    white-space:
+        pre-line;
+
+    margin-bottom:
+        30px;
+}
+
+
+/* =========================================================
+   OTHER SCREENS
+========================================================= */
+
+.beautiful-screen {
+
+    background:
+        radial-gradient(
+            circle at 50% 20%,
+            #4c173b,
+            #160b1a 55%,
+            #050509 100%
+        );
+}
+
+.soft-glow {
+
+    position:
+        absolute;
+
+    width:
+        350px;
+
+    height:
+        350px;
+
+    border-radius:
+        50%;
+
+    background:
+        rgba(255,65,150,0.12);
+
+    filter:
+        blur(80px);
+
+    animation:
+        glowPulse
+        5s
+        ease-in-out
+        infinite alternate;
+}
+
+@keyframes glowPulse {
+
+    from {
+
+        transform:
+            scale(0.8);
+
+        opacity:
+            0.5;
+    }
+
+    to {
+
+        transform:
+            scale(1.25);
+
+        opacity:
+            1;
+    }
+}
+
+
+/* =========================================================
+   MUSIC
+========================================================= */
+
+#musicControl {
+
+    position:
+        fixed;
+
+    z-index:
+        1000;
+
+    bottom:
+        18px;
+
+    left:
+        18px;
+
+    width:
+        42px;
+
+    height:
+        42px;
+
+    border-radius:
+        50%;
+
+    border:
+        1px solid
+        rgba(255,255,255,0.2);
+
+    background:
+        rgba(0,0,0,0.35);
+
+    color:
+        white;
+
+    backdrop-filter:
+        blur(10px);
+
+    display:
+        none;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    font-size:
+        17px;
+}
+
+
+/* =========================================================
+   SCROLLBAR
+========================================================= */
+
+.love-card::-webkit-scrollbar {
+    width: 3px;
+}
+
+.love-card::-webkit-scrollbar-thumb {
+
+    background:
+        rgba(255,255,255,0.25);
+
+    border-radius:
+        20px;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .click-button {
+
+        font-size:
+            15px;
+
+        padding:
+            13px 22px;
+    }
+
+    .top-right {
+        top: 22px;
+        right: 16px;
+    }
+
+    .top-left {
+        top: 22px;
+        left: 16px;
+    }
+
+    .bottom-left {
+        bottom: 25px;
+        left: 16px;
+    }
+
+    .bottom-right {
+        bottom: 25px;
+        right: 16px;
+    }
+
+    .love-card {
+
+        width:
+            calc(100% - 20px);
+
+        padding:
+            30px 19px;
+    }
+
+    .love-text {
+
+        font-size:
+            16px;
+
+        line-height:
+            2;
+    }
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+<div id="app">
+
+
+<!-- =====================================================
+     GLOBAL STARS
+====================================================== -->
+
+<div id="globalStars"></div>
+
+
+<!-- =====================================================
+     AUDIO
+====================================================== -->
+
+<audio id="music" loop preload="auto">
+    <source src="song.mp3" type="audio/mpeg">
+</audio>
+
+
+<button
+    id="musicControl"
+    onclick="toggleMusic()">
+    ♪
+</button>
+
+
+<!-- =====================================================
+     INTRO
+====================================================== -->
+
+<section
+    id="intro"
+    class="screen active">
+
+    <button
+        id="introButton"
+        class="click-button center-button"
+        onclick="introClick()">
+
+        اكبسي علي
+
+    </button>
+
+</section>
+
+
+<!-- =====================================================
+     CORNERS
+====================================================== -->
+
+<section
+    id="corners"
+    class="screen">
+
+    <button
+        id="cornerButton"
+        class="click-button center-button"
+        onclick="cornerClick()">
+
+        اكبسي علي
+
+    </button>
+
+</section>
+
+
+<!-- =====================================================
+     CHAOS
+====================================================== -->
+
+<section
+    id="chaos"
+    class="screen">
+
+    <div id="chaosButtons"></div>
+
+
+    <div class="chaos-message">
+
+        <h1>
+            معقول زهقتي؟
+        </h1>
+
+        <p>
+            خلص جد أنا الكبسة الأصلية
+        </p>
+
+        <button
+            id="realButton"
+            class="click-button">
+
+            اكبسي علي
+
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     ANGRY
+====================================================== -->
+
+<section
+    id="angry"
+    class="screen">
+
+    <div class="angry-content">
+
+        <h1>
+            خلص كثير عصبية صايرة ئي؟؟ 😂
+        </h1>
+
+        <button
+            class="next-button"
+            onclick="goToLove()">
+
+            تفضلي ❤️
+
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     LOVE
+====================================================== -->
+
+<section
+    id="love"
+    class="screen">
+
+    <div id="heartRain"></div>
+
+    <div class="soft-glow"></div>
+
+
+    <div class="love-card">
+
+        <h1>
+            إلك إنتِ ❤️
+        </h1>
+
+        <div class="love-text">
+
+بعرف إنه يمكن الطريقة غريبة شوي...
+بس أنا ما بدي أعتذرلك بطريقة عادية وأحكيلك بس "آسف" وأخلص.
+أنا بديك تعرفي إنه إنتِ مش شخص عادي بحياتي.
+إنتِ من الناس اللي وجودهم بيفرق معي، وكلامهم بيفرق معي، وزعلهم بيفرق معي أكثر مما بتتخيلي.
+ومهما حاولت أضحك أو أتصرف عادي، بضل في إشي جواي بحكيلي إنه لا... لازم أصلّح الموضوع.
+أنا بحبك، وبحب وجودك بحياتي، وبحب التفاصيل الصغيرة اللي يمكن إنتِ ما تنتبهي إلها وأنا أنتبهلها.
+وبعرف إني مش دايمًا بعرف أعبّر بالطريقة الصح، وممكن مرات أحكي إشي بطريقة غلط أو أتصرف بطريقة ما بتستاهليها.
+بس صدقيني، آخر إشي بدي إياه إني أكون سبب بزعل بقلبك.
+أنا ما بدي منك تكوني كاملة، ولا بدي علاقتنا تكون كاملة.
+بديها تكون إلنا...
+فيها ضحك، وفيها زعل، وفيها تفاهم، وفيها غلط، والأهم فيها ناس بتحاول تصلح لما تغلط.
+وإذا في إشي واحد بدي اياكي تصدقيه من كل هاي الرسالة...
+فهو إني بحبك أكثر من قدرتي على شرح هالحب بالكلام.
+
+        </div>
+
+
+        <button
+            class="next-button"
+            onclick="goToSoftMessage()">
+
+            لسه ما خلصت ❤️
+
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     SOFT MESSAGE
+====================================================== -->
+
+<section
+    id="softMessage"
+    class="screen beautiful-screen">
+
+    <div class="soft-glow"></div>
+
+
+    <div class="love-card">
+
+        <h1>
+            تعالي هون شوي ❤️
+        </h1>
+
+        <div class="love-text">
+
+يمكن أكثر إشي نفسي توصلك إياه هو إنك ما تحتاجي تشكي بمكانتك عندي.
+
+حتى لما أكون ساكت...
+حتى لما أكون مش عارف أحكي...
+حتى لما يصير بينا سوء فهم...
+
+إنتِ بتضلي إنتِ.
+الشخص اللي بدي أرجع أحكيله.
+والشخص اللي بدي أضحك معه.
+والشخص اللي بتهمني مشاعره حتى وأنا زعلان.
+أنا ما بوعدك إني ما أغلط.
+بس بوعدك إني لما أغلط ما أتعامل مع الموضوع وكأنه ما صار.
+بوعدك أحاول أفهمك أكثر.
+وأسمعك أكثر.
+وأفكر قبل ما أحكي.
+وأعرف إنه أحيانًا كلمة صغيرة مني ممكن يكون إلها أثر كبير عليك.
+وبصراحة...
+أنا ما بدي أربح أي نقاش إذا كان ثمنه إني أخسرك أو أخلي قلبك يوجع.
+إنتِ أهم من هيك.
+وأنا بدي أضل الشخص اللي لما تفكري فيه تحسي بالأمان، مش الشخص اللي تخافي من زعله.
+
+        </div>
+
+
+        <button
+            class="next-button"
+            onclick="goToApology()">
+
+            آخر إشي... ❤️
+
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     APOLOGY
+====================================================== -->
+
+<section
+    id="apology"
+    class="screen beautiful-screen">
+
+    <div class="soft-glow"></div>
+
+
+    <div class="love-card">
+
+        <h1>
+            وآخر كلمة...
+        </h1>
+
+        <div class="love-text">
+
+أنا آسف.
+مش آسف عشان بس نخلص من الزعل.
+آسف لأني بعرف إنه كان ممكن أتصرف بطريقة أحسن.
+آسف إذا خليتك تحسي للحظة إنك مش مهمة عندي.
+وآسف إذا كلامي أو تصرفي وصلك بطريقة غير اللي كنت أقصدها.
+أنا بعرف إنه الاعتذار لحاله مش كفاية.
+وعشان هيك ما بدي أطلب منك تنسي كل إشي بمجرد ما تقرئي كلمة "آسف".
+خدي وقتك.
+ازعلي إذا بدك.
+احكيلي إذا في إشي بقلبك.
+بس لا تخلي موقف واحد يخليك تشوفي كل اللي بينا وكأنه ما إله قيمة.
+لأنه بالنسبة إلي إله قيمة كبيرة.
+إنتِ إلك قيمة كبيرة.
+وأنا ما بدي أكون الشخص اللي يحكيلك كلام حلو وقت ما يكون كل إشي تمام بس.
+بدي أكون موجود لما يكون في مشكلة كمان.
+بدي أصلّح.
+بدي أتعلم.
+وبدي أصير أحسن.
+وإذا بتسأليني شو بدي منك بعد كل هالحكي؟
+بدي بس فرصة
+مش عشان أقولك إني كامل...
+بس عشان أثبتلك إني بحبك، وإنه زعلك مش إشي بهون علي.
+سامحيني إذا بتقدري.
+وإذا لسه زعلانة...
+تعالي زعلانة 😂
+بس تعالي.
+
+        </div>
+
+
+        <div
+            style="
+                color:#ff9ccc;
+                font-size:20px;
+                margin-top:20px;
+            ">
+
+            بحبك ❤️
+
+        </div>
+
+    </div>
+
+</section>
+
+
+</div>
+
+
+<script>
+
+/* =========================================================
+   SCREEN REFERENCES
+========================================================= */
+
+const screens = {
+
+    intro:
+        document.getElementById("intro"),
+
+    corners:
+        document.getElementById("corners"),
+
+    chaos:
+        document.getElementById("chaos"),
+
+    angry:
+        document.getElementById("angry"),
+
+    love:
+        document.getElementById("love"),
+
+    softMessage:
+        document.getElementById("softMessage"),
+
+    apology:
+        document.getElementById("apology")
+};
+
+
+/* =========================================================
+   GLOBAL STARS
+========================================================= */
+
+const globalStars =
+    document.getElementById("globalStars");
+
+
+function createStars() {
+
+    for (let i = 0; i < 190; i++) {
+
+        const star =
+            document.createElement("span");
+
+        star.className =
+            "star";
+
+        star.style.left =
+            Math.random() * 100 + "%";
+
+        star.style.top =
+            Math.random() * 100 + "%";
+
+        const size =
+            Math.random() * 2.4 + 0.5;
+
+        star.style.width =
+            size + "px";
+
+        star.style.height =
+            size + "px";
+
+        star.style.setProperty(
+            "--duration",
+            (Math.random() * 3 + 1.5) + "s"
+        );
+
+        star.style.animationDelay =
+            Math.random() * 3 + "s";
+
+        globalStars.appendChild(star);
+    }
+}
+
+createStars();
+
+
+/* =========================================================
+   SCREEN TRANSITION
+========================================================= */
+
+function showScreen(screen) {
+
+    Object.values(screens).forEach(
+        currentScreen => {
+
+            currentScreen.classList.remove(
+                "active"
+            );
+        }
+    );
+
+    /*
+       نستخدم requestAnimationFrame
+       حتى الانتقال يكون واضح وسلس
+    */
+
+    requestAnimationFrame(() => {
+
+        screen.classList.add("active");
+
+    });
+}
+
+
+/* =========================================================
+   INTRO
+========================================================= */
+
+let introStarted = false;
+
+function introClick() {
+
+    if (introStarted)
+        return;
+
+    introStarted = true;
+
+    const button =
+        document.getElementById(
+            "introButton"
+        );
+
+    button.style.opacity = "0";
+
+    setTimeout(() => {
+
+        showScreen(
+            screens.corners
+        );
+
+        startCorners();
+
+    }, 180);
+}
+
+
+/* =========================================================
+   CORNER SEQUENCE
+========================================================= */
+
+let cornerStage = 0;
+
+function startCorners() {
+
+    const button =
+        document.getElementById(
+            "cornerButton"
+        );
+
+    button.className =
+        "click-button top-right";
+
+    button.style.opacity = "1";
+}
+
+
+function cornerClick() {
+
+    const button =
+        document.getElementById(
+            "cornerButton"
+        );
+
+    cornerStage++;
+
+    /*
+       اختفاء سريع
+    */
+
+    button.style.opacity = "0";
+
+    setTimeout(() => {
+
+        button.className =
+            "click-button";
+
+        if (cornerStage === 1) {
+
+            button.classList.add(
+                "top-left"
+            );
+
+        }
+
+        else if (cornerStage === 2) {
+
+            button.classList.add(
+                "bottom-left"
+            );
+
+        }
+
+        else if (cornerStage === 3) {
+
+            button.classList.add(
+                "bottom-right"
+            );
+
+        }
+
+        else {
+
+            startChaos();
+
+            return;
+        }
+
+        /*
+           رجوع سريع
+        */
+
+        button.style.opacity = "1";
+
+    }, 120);
+}
+
+
+/* =========================================================
+   CHAOS SYSTEM
+========================================================= */
+
+const chaosContainer =
+    document.getElementById(
+        "chaosButtons"
+    );
+
+
+let chaosInterval;
+
+let chaosStarted = false;
+
+
+function startChaos() {
+
+    showScreen(
+        screens.chaos
+    );
+
+    if (chaosStarted)
+        return;
+
+    chaosStarted = true;
+
+    /*
+       البداية هادئة جدًا
+       وبعدها السرعة تصير مجنونة
+    */
+
+    let count = 0;
+
+    chaosInterval =
+        setInterval(() => {
+
+            createChaosButton();
+
+            count++;
+
+            /*
+               بعد أول 25 زر
+               نرفع السرعة
+            */
+
+            if (count > 25) {
+
+                clearInterval(
+                    chaosInterval
+                );
+
+                chaosInterval =
+                    setInterval(
+                        createChaosButton,
+                        38
+                    );
+            }
+
+        }, 90);
+
+
+    /*
+       مطر الأزرار يبدأ بعد
+       جزء بسيط من الثانية
+    */
+
+    setTimeout(
+        startButtonRain,
+        650
+    );
+}
+
+
+/* =========================================================
+   CREATE RANDOM CHAOS BUTTON
+========================================================= */
+
+function createChaosButton() {
+
+    const button =
+        document.createElement(
+            "div"
+        );
+
+    button.className =
+        "chaos-button";
+
+    button.textContent =
+        "اكبسي علي";
+
+
+    /*
+       انتشار كامل الشاشة
+    */
+
+    button.style.left =
+        Math.random() * 100 + "%";
+
+    button.style.top =
+        Math.random() * 100 + "%";
+
+
+    /*
+       حركات مختلفة
+    */
+
+    button.style.setProperty(
+        "--moveX1",
+        (Math.random() * 25 - 12) + "px"
+    );
+
+    button.style.setProperty(
+        "--moveY1",
+        (Math.random() * 25 - 12) + "px"
+    );
+
+    button.style.setProperty(
+        "--moveX2",
+        (Math.random() * 70 - 35) + "px"
+    );
+
+    button.style.setProperty(
+        "--moveY2",
+        (Math.random() * 70 - 35) + "px"
+    );
+
+    button.style.setProperty(
+        "--rotate1",
+        (Math.random() * 30 - 15) + "deg"
+    );
+
+    button.style.setProperty(
+        "--rotate2",
+        (Math.random() * 70 - 35) + "deg"
+    );
+
+    button.style.setProperty(
+        "--moveSpeed",
+        (Math.random() * 1.5 + 0.4) + "s"
+    );
+
+
+    /*
+       أحجام مختلفة
+    */
+
+    const size =
+        Math.random() * 0.5 + 0.8;
+
+    button.style.transform =
+        `scale(${size})`;
+
+
+    chaosContainer.appendChild(
+        button
+    );
+
+
+    /*
+       تنظيف العناصر القديمة
+       حتى الآيفون ما يثقل
+    */
+
+    setTimeout(() => {
+
+        button.remove();
+
+    }, 4500);
+}
+
+
+/* =========================================================
+   BUTTON RAIN
+========================================================= */
+
+let rainStarted = false;
+
+
+function startButtonRain() {
+
+    if (rainStarted)
+        return;
+
+    rainStarted = true;
+
+
+    setInterval(() => {
+
+        createRainButton();
+
+    }, 75);
+}
+
+
+function createRainButton() {
+
+    const button =
+        document.createElement(
+            "div"
+        );
+
+    button.className =
+        "rain-button";
+
+    button.textContent =
+        "اكبسي علي";
+
+
+    button.style.left =
+        Math.random() * 100 + "%";
+
+
+    button.style.setProperty(
+        "--rainDuration",
+        (Math.random() * 2.5 + 2) + "s"
+    );
+
+
+    button.style.setProperty(
+        "--rainDrift",
+        (Math.random() * 180 - 90) + "px"
+    );
+
+
+    button.style.setProperty(
+        "--rainRotate",
+        (Math.random() * 360 - 180) + "deg"
+    );
+
+
+    chaosContainer.appendChild(
+        button
+    );
+
+
+    setTimeout(() => {
+
+        button.remove();
+
+    }, 5000);
+}
+
+
+/* =========================================================
+   REAL BUTTON
+========================================================= */
+
+const realButton =
+    document.getElementById(
+        "realButton"
+    );
+
+
+let realButtonClicks = 0;
+
+
+realButton.addEventListener(
+    "click",
+    handleRealButton
+);
+
+
+function handleRealButton() {
+
+    realButtonClicks++;
+
+
+    /*
+       أول كبسة:
+       يهرب
+    */
+
+    if (realButtonClicks === 1) {
+
+        escapeRealButton();
+
+        return;
+    }
+
+
+    /*
+       ثاني كبسة:
+       يهرب مرة ثانية
+    */
+
+    if (realButtonClicks === 2) {
+
+        escapeRealButton();
+
+        return;
+    }
+
+
+    /*
+       الثالثة:
+       انتقال احترافي
+    */
+
+    goToAngry();
+
+}
+
+
+/* =========================================================
+   ESCAPE REAL BUTTON
+========================================================= */
+
+function escapeRealButton() {
+
+    const maxX =
+        Math.min(
+            window.innerWidth * 0.28,
+            115
+        );
+
+    const maxY =
+        Math.min(
+            window.innerHeight * 0.20,
+            95
+        );
+
+    const x =
+        (Math.random() * 2 - 1)
+        * maxX;
+
+    const y =
+        (Math.random() * 2 - 1)
+        * maxY;
+
+
+    realButton.style.transform =
+        `
+        translate(
+            ${x}px,
+            ${y}px
+        )
+        scale(0.9)
+        rotate(
+            ${Math.random() * 10 - 5}deg
+        )
+        `;
+
+
+    /*
+       بعد الهروب يرجع أوضح
+    */
+
+    setTimeout(() => {
+
+        realButton.style.transform =
+            "scale(1)";
+
+    }, 500);
+}
+
+
+/* =========================================================
+   TRANSITION TO ANGRY
+========================================================= */
+
+function goToAngry() {
+
+    /*
+       إيقاف الفوضى
+    */
+
+    if (chaosInterval) {
+
+        clearInterval(
+            chaosInterval
+        );
+    }
+
+
+    /*
+       تفريغ الخلفية تدريجيًا
+    */
+
+    chaosContainer.style.transition =
+        "opacity 0.3s ease";
+
+    chaosContainer.style.opacity =
+        "0";
+
+
+    /*
+       تكبير الكبسة قبل الانتقال
+    */
+
+    realButton.style.transform =
+        "scale(1.35)";
+
+    realButton.style.boxShadow =
+        `
+        0 0 25px #ff4f9a,
+        0 0 70px #ff4f9a,
+        0 0 120px rgba(255,60,160,0.8)
+        `;
+
+
+    setTimeout(() => {
+
+        showScreen(
+            screens.angry
+        );
+
+        chaosContainer.style.opacity =
+            "1";
+
+    }, 330);
+}
+
+
+/* =========================================================
+   LOVE
+========================================================= */
+
+function goToLove() {
+
+    showScreen(
+        screens.love
+    );
+
+    startMusic();
+
+    startHeartRain();
+}
+
+
+/* =========================================================
+   MUSIC
+========================================================= */
+
+const music =
+    document.getElementById(
+        "music"
+    );
+
+const musicControl =
+    document.getElementById(
+        "musicControl"
+    );
+
+
+function startMusic() {
+
+    music.volume =
+        0.72;
+
+
+    music.play()
+        .then(() => {
+
+            musicControl.style.display =
+                "flex";
+
+        })
+        .catch(() => {
+
+            /*
+               لأن المستخدم ضغط قبلها
+               المفروض يشتغل على الآيفون.
+            */
+
+            musicControl.style.display =
+                "flex";
+        });
+}
+
+
+function toggleMusic() {
+
+    if (music.paused) {
+
+        music.play();
+
+        musicControl.textContent =
+            "♪";
+
+    }
+
+    else {
+
+        music.pause();
+
+        musicControl.textContent =
+            "Ⅱ";
+    }
+}
+
+
+/* =========================================================
+   HEART RAIN
+========================================================= */
+
+const heartRain =
+    document.getElementById(
+        "heartRain"
+    );
+
+
+const heartSymbols = [
+    "♥",
+    "❤",
+    "♡",
+    "💗",
+    "💖",
+    "💘",
+    "💕"
+];
+
+
+const heartColors = [
+    "#ff4d8d",
+    "#ff6bad",
+    "#ff94c8",
+    "#ff3d62",
+    "#c86bff",
+    "#ffffff",
+    "#ffb0d4"
+];
+
+
+let heartRainStarted = false;
+
+
+function createHeart() {
+
+    const heart =
+        document.createElement(
+            "span"
+        );
+
+    heart.className =
+        "heart";
+
+
+    heart.textContent =
+        heartSymbols[
+            Math.floor(
+                Math.random()
+                *
+                heartSymbols.length
+            )
+        ];
+
+
+    heart.style.left =
+        Math.random() * 100 + "%";
+
+
+    heart.style.setProperty(
+        "--size",
+        (Math.random() * 22 + 12) + "px"
+    );
+
+
+    heart.style.setProperty(
+        "--color",
+        heartColors[
+            Math.floor(
+                Math.random()
+                *
+                heartColors.length
+            )
+        ]
+    );
+
+
+    heart.style.setProperty(
+        "--opacity",
+        Math.random() * 0.5 + 0.45
+    );
+
+
+    heart.style.setProperty(
+        "--duration",
+        Math.random() * 4 + 4 + "s"
+    );
+
+
+    heart.style.setProperty(
+        "--drift",
+        (Math.random() * 180 - 90) + "px"
+    );
+
+
+    heartRain.appendChild(
+        heart
+    );
+
+
+    setTimeout(() => {
+
+        heart.remove();
+
+    }, 9000);
+}
+
+
+function startHeartRain() {
+
+    if (heartRainStarted)
+        return;
+
+    heartRainStarted = true;
+
+
+    for (
+        let i = 0;
+        i < 45;
+        i++
+    ) {
+
+        setTimeout(
+            createHeart,
+            i * 70
+        );
+    }
+
+
+    setInterval(
+        createHeart,
+        170
+    );
+}
+
+
+/* =========================================================
+   NEXT MESSAGES
+========================================================= */
+
+function goToSoftMessage() {
+
+    showScreen(
+        screens.softMessage
+    );
+}
+
+
+function goToApology() {
+
+    showScreen(
+        screens.apology
+    );
+}
+
+</script>
+
+</body>
+</html>
